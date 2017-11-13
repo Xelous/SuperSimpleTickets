@@ -1,0 +1,17 @@
+<html>
+	<head>
+		<title>Ticket Login</title>
+	</head>
+<body>
+	<h1>Simple Login</h1>
+	{% if error %}
+	<p><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+
+	<form action="login" method="post">
+		<input type="text" name="Username" value=""><br/>
+		<input type="password" name="Password" value=""><br/>
+		<input type="submit" value="Login">
+	</form>
+</body>
+</html>

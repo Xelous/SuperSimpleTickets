@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<title>Tickets</title>
+		<script language="javascript">
+			function ViewTicket(p_Id)
+			{
+				var l_Item = document.getElementById("TicketId");
+				l_Item.value = p_Id;
+				document.getElementById("ViewTicketForm").submit();
+			}
+		</script>
+	</head>
+
+	<body>
+		<h1>Tickets</h1>		
+		<a href="addticket">Add Ticket</a><br/>
+		<form id="ViewTicketForm" action="/viewticket" method="POST">
+			<input type="hidden" id="TicketId" name="TicketId" value="-1">
+		</form>
+		<table width="90%">
+			<col width="10%">
+			<col width="75%">
+			<col width="15%">
+			<thead>
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Description</th>
+					<th scope="col">Added</th>
+				</tr>
+			</thead>
+		
+			{% for ticket in tickets %}
+			<tr onClick="ViewTicket('{{ticket[0]}}')">
+				<td colspan=1>
+					{% if ticket[3] %}<strike>{% endif %}
+					{{ticket[0]}}
+					{% if ticket[3] %}<strike>{% endif %}
+				</td>
+				<td colspan=1>
+					{% if ticket[3] %}<strike>{% endif %}
+					{{ticket[1]}}
+					{% if ticket[3] %}<strike>{% endif %}
+				</td>
+				<td colspan=1>
+					{% if ticket[3] %}<strike>{% endif %}
+					{{ticket[2]}}
+					{% if ticket[3] %}<strike>{% endif %}
+				</td>
+			</tr>
+			{% endfor %}
+		</table>	
+	</body>
+</html>

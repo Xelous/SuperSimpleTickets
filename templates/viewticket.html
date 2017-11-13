@@ -1,0 +1,66 @@
+<html>
+	<head>
+		<title>Ticket View</title>
+		<script language="javascript">
+			function SelectTicketModification(p_Modification)
+			{
+				var l_Modification = document.getElementById("Modification");
+				l_Modification.value = p_Modification;
+				document.getElementById("ModifyTicketForm").submit();
+			}
+		</script>
+	</head>
+	<body>
+		<h1>Ticket: {{ticket[0]}}</h1>
+		Area: {{ticket[1]}}<br/>
+		Description: {{ticket[7]}}<br/>
+		Date Added: {{ticket[2]}}<br/>
+		Date Resolved: {{ticket[3]}}<br/>
+		Tested Date: {{ticket[4]}}<br/>
+		Completed Date: {{ticket[5]}}<br/>
+		Notes:<br/>
+		<textarea readonly rows="15" cols="120">{{ticket[6]}}</textarea>
+		<table width="80%">
+			<col width="20%">
+			<col width="20%">
+			<col width="20%">
+			<col width="20%">
+			<col width="20%">
+			<tr>
+				{% if ticket[3] is none %}
+				<td colspan=1 onClick="SelectTicketModification(0)">Set Resolved</td>
+				{% else %}
+				<td colspan=1><strike>Set Resolved</strike></td>
+				{% endif %}
+
+				{% if ticket[4] is none %}
+				<td colspan=1 onClick="SelectTicketModification(1)">Set Tested</td>
+				{% else %}
+				<td colspan=1><strike>Set Tested</strike></td>
+				{% endif %}
+
+				{% if ticket[5] is none %}
+				<td colspan=1 onClick="SelectTicketModification(2)">Set Completed</td>
+				{% else %}
+				<td colspan=1><strike>Set Complete</strike></td>
+				{% endif %}
+
+				<td colspan=1></td>
+			</tr>
+		</table>
+		<br/>
+		Add More Notes:
+		<form "AddNoteForm" action="/addnote" method="POST">
+			<textarea rows="10" cols="120" name="notetext"></textarea><br/>
+			<input type="hidden" name="TicketId" value="{{ticket[0]}}">
+			<input type="submit" value="Add Note">
+		</form>
+
+		<br/>
+		<a href="/tickets">Back to Tickets</a>
+		<form id="ModifyTicketForm" action="/modifyticket" method="POST">
+			<input type="hidden" name="TicketId" value="{{ticket[0]}}">
+			<input type="hidden" id="Modification" name="Modification" value="-1">
+		</form>
+	</body>
+</html>
