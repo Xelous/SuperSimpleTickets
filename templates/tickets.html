@@ -1,6 +1,11 @@
 <html>
 	<head>
-		<title>Tickets</title>
+		<title>Ticket Display</title>
+
+		<link async href="http://fonts.googleapis.com/css?family=Coda" data-generated="http://enjoycss.com" rel="stylesheet" type="text/css"/>
+
+		<link rel="stylesheet" type="text/css" href="static/theme.css">		
+
 		<script language="javascript">
 			function ViewTicket(p_Id)
 			{
@@ -12,42 +17,79 @@
 	</head>
 
 	<body>
-		<h1>Tickets</h1>		
-		<a href="addticket">Add Ticket</a><br/>
-		<form id="ViewTicketForm" action="/viewticket" method="POST">
-			<input type="hidden" id="TicketId" name="TicketId" value="-1">
-		</form>
-		<table width="90%">
-			<col width="10%">
-			<col width="75%">
-			<col width="15%">
-			<thead>
-				<tr>
-					<th scope="col">Id</th>
-					<th scope="col">Description</th>
-					<th scope="col">Added</th>
-				</tr>
-			</thead>
-		
-			{% for ticket in tickets %}
-			<tr onClick="ViewTicket('{{ticket[0]}}')">
-				<td colspan=1>
-					{% if ticket[3] %}<strike>{% endif %}
-					{{ticket[0]}}
-					{% if ticket[3] %}<strike>{% endif %}
-				</td>
-				<td colspan=1>
-					{% if ticket[3] %}<strike>{% endif %}
-					{{ticket[1]}}
-					{% if ticket[3] %}<strike>{% endif %}
-				</td>
-				<td colspan=1>
-					{% if ticket[3] %}<strike>{% endif %}
-					{{ticket[2]}}
-					{% if ticket[3] %}<strike>{% endif %}
+
+	<table>
+		<col width="5%">
+		<col width="85%">
+		<col width="10%">
+		<tbody>
+			<tr>				
+				<td colspan=2 align="center"><h1 class="title">Super Simple Tickets : All Tickets</h1></td>
+				<td colspan=1>&nbsp;</td>
+			</tr>
+
+			<tr>
+				<td colspan=3 align="left">
+					<a class="button" href="addticket">Add a Ticket</a>
 				</td>
 			</tr>
-			{% endfor %}
-		</table>	
+		</tbody>
+	</table>
+
+		
+	<form id="ViewTicketForm" action="/viewticket" method="POST">
+		<input type="hidden" id="TicketId" name="TicketId" value="-1">
+	</form>
+		
+	<table width="100%">
+		<col width="2%">		
+		<col width="96%">
+		<col width="2%">
+		<tbody>
+			<tr>
+				<td colspan=1>&nbsp;</td>
+
+				<td colspan=1>
+					<table width="100%" bgcolor="#f0f0f0">
+						<col width="10%">
+						<col width="80%">
+						<col width="10%">
+						<thead>
+							<tr>
+								<th class="title" scope="col" align="center">Id</th>
+								<th class="title" scope="col" align="left">Description</th>
+								<th class="title" scope="col" align="right">Date Added</th>
+							</tr>
+						</thead>
+					
+						{% for ticket in tickets %}
+						<tr onClick="ViewTicket('{{ticket[0]}}')">
+							<td colspan=1>
+								{% if ticket[3] %}<strike>{% endif %}
+								{{ticket[0]}}
+								{% if ticket[3] %}<strike>{% endif %}
+							</td>
+							<td colspan=1>
+								{% if ticket[3] %}<strike>{% endif %}
+								{{ticket[1]}}
+								{% if ticket[3] %}<strike>{% endif %}
+							</td>
+							<td colspan=1>
+								{% if ticket[3] %}<strike>{% endif %}
+								{{ticket[2]}}
+								{% if ticket[3] %}<strike>{% endif %}
+							</td>
+						</tr>
+						{% endfor %}
+					</table>
+				</td>
+
+				<td colspan=1>&nbsp;</td>
+			</tr>
+		</tbody>
+	</table>
+
+		
+
 	</body>
 </html>

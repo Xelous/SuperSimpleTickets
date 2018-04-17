@@ -88,11 +88,18 @@
 	font: normal 18px/normal "Coda", Helvetica, sans-serif;
 }		
 
-td {
+.spacedtd 
+{
 		 padding-bottom: 10px;
 }
 
 .text
 {
 	font: normal 12px/normal "Coda", Helvetica, sans-serif;
+}
+
+.textLarge
+{
+  font: normal 18px/normal "Coda", Helvetica, sans-serif;
+  padding-bottom: 10px;
 }
