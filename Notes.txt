@@ -1,0 +1,34 @@
+When installed the mysql service, on Ubuntu 18.04 needs to set up a password:
+
+mysql -u root
+
+No password here, just access the service.
+
+If you have  Error 1698, work as sudo:
+
+sudo mysql -u root
+USE mysql
+SELECT User, Host, plugin FROM mysql.user;
+
+If you see 'auth_socket' under root, then you need to perform:
+
+USE mysql;
+UPDATE user SET plugin='mysql_native_password' WHERE User='root';
+FLUSH PRIVILEGES;
+exit;
+
+Then:
+
+service mysql restart
+
+If you then have error 1045:
+
+mysql -u root
+
+And perform:
+
+UPDATE mysql.user SET authentication_string=PASSWORD('complexpassword') WHERE User='root';
+FLUSH PRIVILEGES;
+exit;
+
+
