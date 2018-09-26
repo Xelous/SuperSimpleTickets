@@ -9,43 +9,53 @@
 				document.getElementById("ModifyTicketForm").submit();
 			}
 		</script>
+		<link async href="http://fonts.googleapis.com/css?family=Coda" data-generated="http://enjoycss.com" rel="stylesheet" type="text/css"/>
+
+		<link rel="stylesheet" type="text/css" href="static/theme.css">	
 	</head>
 	<body>
-		<h1>Ticket: {{ticket[0]}}</h1>
-		Area: {{ticket[1]}}<br/>
-		Description: {{ticket[7]}}<br/>
-		Date Added: {{ticket[2]}}<br/>
-		Date Resolved: {{ticket[3]}}<br/>
-		Tested Date: {{ticket[4]}}<br/>
-		Completed Date: {{ticket[5]}}<br/>
-		Notes:<br/>
-		<textarea readonly rows="15" cols="120">{{ticket[6]}}</textarea>
-		<table width="80%">
-			<col width="20%">
-			<col width="20%">
-			<col width="20%">
-			<col width="20%">
-			<col width="20%">
-			<tr>
-				{% if ticket[3] is none %}
-				<td colspan=1 onClick="SelectTicketModification(0)">Set Resolved</td>
-				{% else %}
-				<td colspan=1><strike>Set Resolved</strike></td>
-				{% endif %}
+		<table width="50%" border=0>
+			<col width="40%">
+			<col width="60%">
+			<tr><td class="text"><h1>Ticket: {{ticket[0]}}</h1></td></tr>
+			<tr><td class="text">Area: {{ticket[1]}}</td></tr>
+			<tr><td class="text">Description: {{ticket[7]}}</td></tr>
+			<tr><td class="text">Date Added: {{ticket[2]}}</td></tr>
+			<tr><td class="text">Date Resolved: {{ticket[3]}}</td></tr>
+			<tr><td class="text">Tested Date: {{ticket[4]}}</td></tr>
+			<tr><td class="text">Completed Date: {{ticket[5]}}</td></tr>
+			<tr><td class="text">Notes:</td></tr>
+			<tr><td class="text">
+				<textarea readonly rows="15" cols="120">{{ticket[6]}}</textarea>
+				<table width="80%">
+					<col width="20%">
+					<col width="20%">
+					<col width="20%">
+					<col width="20%">
+					<col width="20%">
+					<tr>
+						{% if ticket[3] is none %}
+						<td colspan=1 class="text" onClick="SelectTicketModification(0)">Set Resolved</td>
+						{% else %}
+						<td colspan=1 class="text" ><strike>Set Resolved</strike></td>
+						{% endif %}
 
-				{% if ticket[4] is none %}
-				<td colspan=1 onClick="SelectTicketModification(1)">Set Tested</td>
-				{% else %}
-				<td colspan=1><strike>Set Tested</strike></td>
-				{% endif %}
+						{% if ticket[4] is none %}
+						<td colspan=1 class="text" onClick="SelectTicketModification(1)">Set Tested</td>
+						{% else %}
+						<td colspan=1 class="text" ><strike>Set Tested</strike></td>
+						{% endif %}
 
-				{% if ticket[5] is none %}
-				<td colspan=1 onClick="SelectTicketModification(2)">Set Completed</td>
-				{% else %}
-				<td colspan=1><strike>Set Complete</strike></td>
-				{% endif %}
+						{% if ticket[5] is none %}
+						<td colspan=1 class="text" onClick="SelectTicketModification(2)">Set Completed</td>
+						{% else %}
+						<td colspan=1class="text" ><strike>Set Complete</strike></td>
+						{% endif %}
 
-				<td colspan=1></td>
+						<td colspan=1 class="text" ></td>
+					</tr>
+				</table>
+			</td>
 			</tr>
 		</table>
 		<br/>
